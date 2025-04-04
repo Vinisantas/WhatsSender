@@ -85,8 +85,8 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar
 Este projeto está licenciado sob a MIT License.
 
 ## Capturas de Tela
-![alt text](image.png)
 
+![image](https://github.com/user-attachments/assets/1c013d41-2357-49e4-9c45-9c5bdb0e4ef1)
 
 
 Autor
