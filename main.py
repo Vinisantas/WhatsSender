@@ -4,6 +4,15 @@ from controller.main_controller import MainController
 from updater.version_manager import check_for_updates
 from updater.downloader import download_update, extract_update
 
+def update_local_version(new_version):
+    """Atualiza o arquivo version.txt com a nova versão."""
+    try:
+        with open("version.txt", "w") as file:
+            file.write(new_version)
+        print(f"✅ Versão local atualizada para {new_version}")
+    except Exception as e:
+        print(f"Erro ao atualizar a versão local: {e}")
+
 def handle_update():
     """Gerencia o processo de atualização."""
     update_available, new_version = check_for_updates()
@@ -17,6 +26,7 @@ def handle_update():
         if reply == QMessageBox.StandardButton.Yes:
             if download_update():
                 if extract_update():
+                    update_local_version(new_version)  # Atualiza o version.txt local
                     QMessageBox.information(
                         None,
                         "Atualização Concluída",
