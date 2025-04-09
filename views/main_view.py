@@ -25,7 +25,7 @@ class MainView(QWidget):
         self.layout.addWidget(self.label)
 
         self.text_edit = QTextEdit()
-        self.text_edit.setPlaceholderText("Digite a mensagem aqui. Use {nome} para personalizar.")
+        self.text_edit.setPlaceholderText("Digite a mensagem aqui. Use {nome} para personalizar o nome e {valor} para acessar o valor.")
         self.text_edit.setStyleSheet("background-color: #F9F9F9; color: #333333; border: 1px solid #D40000;")
         self.layout.addWidget(self.text_edit)
 

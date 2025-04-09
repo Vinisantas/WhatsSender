@@ -40,11 +40,12 @@ class MainController:
         """Atualiza a tabela de contatos na interface."""
         contacts = self.model.get_contacts()
         self.view.table.setRowCount(len(contacts))
-        self.view.table.setColumnCount(2)
-        self.view.table.setHorizontalHeaderLabels(['Nome', 'Número'])
+        self.view.table.setColumnCount(3)
+        self.view.table.setHorizontalHeaderLabels(['Nome', 'Número', 'Valor'])
         for row, contact in enumerate(contacts):
             self.view.table.setItem(row, 0, QTableWidgetItem(contact['name']))
             self.view.table.setItem(row, 1, QTableWidgetItem(contact['numero']))
+            self.view.table.setItem(row, 2, QTableWidgetItem(contact.get('valor', '')))
 
     def select_image(self):
         """Seleciona uma imagem para enviar junto com as mensagens."""
@@ -73,6 +74,7 @@ class MainController:
         for contact in self.model.get_contacts():
             nome = contact['name']
             numero = str(contact['numero']).strip()
+            valor = (contact['valor']) if 'valor' in contact else ''
 
             # Corrigir número para incluir o código do Brasil
             if not numero.startswith('+55'):
@@ -80,6 +82,7 @@ class MainController:
 
             # Personalizar a mensagem
             personalized_message = message_template.replace("{nome}", nome)
+            personalized_message = personalized_message.replace("{valor}", valor)
 
             try:
                 self.view.status_label.setText(f'📤 Enviando para {nome}...')
