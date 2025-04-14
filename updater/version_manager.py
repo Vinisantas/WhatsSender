@@ -1,6 +1,6 @@
 import requests
 
-VERSION_URL = "https://raw.githubusercontent.com/Vinisantas/WhatsSender/refs/heads/main/version.txt"
+VERSION_URL = "https://github.com/Vinisantas/WhatsSender/raw/refs/heads/main/version.txt"
 
 def get_local_version():
     """Lê a versão local do arquivo version.txt."""
@@ -13,7 +13,7 @@ def get_local_version():
 def get_remote_version():
     """Obtém a versão mais recente do GitHub."""
     try:
-        response = requests.get(VERSION_URL)
+        response = requests.get(VERSION_URL) 
         if response.status_code == 200:
             return response.text.strip()
         else:
