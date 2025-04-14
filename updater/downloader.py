@@ -2,7 +2,7 @@ import requests
 import zipfile
 import os
 
-DOWNLOAD_URL = "https://github.com/Vinisantas/WhatsSender/archive/refs/heads/main.zip"
+DOWNLOAD_URL = "https://raw.githubusercontent.com/Vinisantas/WhatsSender/refs/heads/main/version.txt"
 
 def download_update():
     """Faz o download da nova versão do GitHub."""

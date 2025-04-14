@@ -6,6 +6,8 @@ from controller.main_controller import MainController
 from updater.version_manager import check_for_updates
 from updater.downloader import download_update, extract_update
 from utils.constants import DEFAULT_TIME_BETWEEN_MESSAGES
+import pygetwindow as gw
+import time
 
 def get_version_file_path():
     """Retorna o caminho absoluto do arquivo version.txt."""
@@ -68,6 +70,19 @@ def handle_update():
     except Exception as e:
         print(f"Erro ao verificar atualizações: {e}")
         QMessageBox.critical(None, "Erro", f"Erro ao verificar atualizações: {e}")
+
+def focus_whatsapp_web():
+    """Garante que a janela do WhatsApp Web esteja em foco."""
+    try:
+        # Procura por uma janela com "WhatsApp" no título
+        whatsapp_window = next(win for win in gw.getAllTitles() if "WhatsApp" in win)
+        window = gw.getWindowsWithTitle(whatsapp_window)[0]
+        window.activate()  # Traz a janela para o foco
+        time.sleep(0.5)  # Pequeno atraso para garantir que o foco seja aplicado
+    except StopIteration:
+        print("❌ Janela do WhatsApp Web não encontrada.")
+    except Exception as e:
+        print(f"Erro ao focar na janela do WhatsApp Web: {e}")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
