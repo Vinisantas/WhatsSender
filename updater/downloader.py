@@ -5,6 +5,10 @@ import shutil  # Import para operações de arquivo mais avançadas
 
 DOWNLOAD_URL = "https://github.com/Vinisantas/WhatsSender/releases/latest/download/update.zip"
 
+<<<<<<< HEAD
+=======
+DOWNLOAD_URL = "https://github.com/Vinisantas/WhatsSender/raw/refs/heads/main/version.txt"
+>>>>>>> 69b8bec16fdcf81a9345fbb476d4ad677bce8ed8
 
 def download_update():
     """Faz o download da nova versão do GitHub."""
@@ -67,9 +71,14 @@ def extract_update():
             shutil.rmtree(update_dir)
         return False
     except Exception as e:
+<<<<<<< HEAD
         print(f"❌ Erro ao extrair a atualização: {e}")
         if os.path.exists("update.zip"):
             os.remove("update.zip")
         if os.path.exists(update_dir):
             shutil.rmtree(update_dir)
         return False
+=======
+        print(f"Erro ao extrair a atualização: {e}")
+        return False
+>>>>>>> 69b8bec16fdcf81a9345fbb476d4ad677bce8ed8
