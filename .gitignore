@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyd
+.venv/
+env/
+*.egg-info/
+build/
+dist/
+*.spec
+
+# Executables
+*.exe
+
+# Zips
+update.zip
+
+# Logs and temp files
+*.log
+*.tmp
+error_log.txt

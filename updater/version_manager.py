@@ -1,6 +1,7 @@
 import requests
 
-VERSION_URL = "https://github.com/Vinisantas/WhatsSender/raw/refs/heads/main/version.txt"
+VERSION_URL = "https://raw.githubusercontent.com/Vinisantas/WhatsSender/main/version.txt"
+
 
 def get_local_version():
     """Lê a versão local do arquivo version.txt."""

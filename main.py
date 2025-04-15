@@ -58,15 +58,25 @@ def handle_update():
             reply = QMessageBox.question(
                 None,
                 "Atualização Disponível",
-                f"Uma nova versão ({new_version}) está disponível! Deseja baixar e instalar agora?",
+                f"Uma nova versão ({new_version}) está disponível! Deseja baixar e instalar agora?\n\nO aplicativo precisará ser reiniciado após a atualização.",
                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
             )
             if reply == QMessageBox.StandardButton.Yes:
-                if download_update() and extract_update():
-                    QMessageBox.information(None, "Atualização", "Atualização concluída com sucesso! Reinicie o aplicativo.")
-                    sys.exit(0)
+                if download_update():
+                    if extract_update():
+                        QMessageBox.information(
+                            None,
+                            "Atualização Concluída",
+                            "A atualização foi concluída com sucesso! Por favor, reinicie o aplicativo para aplicar as mudanças."
+                        )
+                        # Aqui você poderia tentar fechar o aplicativo programaticamente
+                        # app = QApplication.instance()
+                        # if app:
+                        #     app.quit()
+                    else:
+                        QMessageBox.critical(None, "Erro", "Falha ao extrair a atualização.")
                 else:
-                    QMessageBox.critical(None, "Erro", "Falha ao atualizar o aplicativo.")
+                    QMessageBox.critical(None, "Erro", "Falha ao baixar a atualização.")
     except Exception as e:
         print(f"Erro ao verificar atualizações: {e}")
         QMessageBox.critical(None, "Erro", f"Erro ao verificar atualizações: {e}")
